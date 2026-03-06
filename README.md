@@ -158,7 +158,24 @@ Save as `requirements.txt` in the project folder.
 
 ---
 
+## 📸 Screenshots
+
+**Smart Insights — Auto-Generated Observations**
+<img width="7684" height="4322" alt="insights" src="https://github.com/user-attachments/assets/7588f433-d313-4d4f-8e6a-389aa5fa1dcb" />
+
+**Auto Charts — Correlation Heatmap**
+<img width="7684" height="4322" alt="auto_charts" src="https://github.com/user-attachments/assets/ab81c944-a264-485d-b614-49b2610086aa" />
+
+**Anomaly Detection — Most Unusual Rows**
+<img width="7684" height="4322" alt="anomaly_detection" src="https://github.com/user-attachments/assets/6c7ac5ef-3b40-4a4b-ac0d-deb82c580699" />
+
+**Ask Your Data — Plain English Queries**
+<img width="7684" height="4322" alt="ask_your_data" src="https://github.com/user-attachments/assets/3bf91db7-1d68-450e-ad22-b50641dac99e" />
+
+
+---
+
 ## 👤 Developer
 
-**Kartikeya Babaraoji Warhade**
+**Kartikeya Warhade**
 [LinkedIn](https://linkedin.com/in/kartikeya-warhade) · [GitHub](https://github.com/KartikeyaWarhade2002)
