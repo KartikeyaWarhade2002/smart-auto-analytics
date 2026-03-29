@@ -1,6 +1,6 @@
 # 🔬 Smart Auto-Analytics and Insights Generator
 
-Upload **any** CSV or Excel dataset — sales, students, employees, hospitals, cricket, anything. This tool automatically understands your data, generates up to **8 plain-English insights**, creates the right charts, detects anomalies, and answers your questions in plain English. No code required.
+Upload **any** CSV or Excel dataset — sales, students, employees, hospitals, cricket, anything. This tool automatically profiles your data, generates up to **8 plain-English insights**, creates the right charts, detects anomalies using dual-mode detection, and answers **15+ types of plain-English questions** instantly. No code required.
 
 ---
 
@@ -14,27 +14,30 @@ Upload **any** CSV or Excel dataset — sales, students, employees, hospitals, c
 
 | Tab | Feature | Description |
 |---|---|---|
-| 📋 | Data Profile | Column-by-column breakdown — types, missing values, stats |
-| 💡 | Smart Insights | Up to 8 auto-generated plain-English observations |
-| 📊 | Auto Charts | Right chart type selected automatically per column |
-| 🔍 | Anomaly Detection | Dual-mode: IQR outliers OR MAD-based ranking |
-| 💬 | Ask Your Data | Plain-English questions answered instantly |
+| 📋 | Data Profile | Column-by-column breakdown — types, missing %, mean, median, min, max |
+| 💡 | Smart Insights | Up to 8 auto-generated plain-English observations backed by statistics |
+| 📊 | Auto Charts | Correct chart type selected automatically per column |
+| 🔍 | Anomaly Detection | Dual-mode: IQR outliers OR MAD-based ranking for clean data |
+| 💬 | Ask Your Data | 15+ plain-English question types answered instantly — no code needed |
 
 ---
 
 ## 💡 Smart Insights Engine
 
-The tool automatically finds and writes observations about your data:
+The tool automatically detects and writes 7 insight types, returning up to 8 total:
 
 | Insight Type | Example |
 |---|---|
 | 📋 Dataset Overview | "150 rows, 8 columns, 0% missing, 0 duplicates" |
-| 🔗 Correlation | "midterm_score and final_score are strongly positively correlated (r = 0.82)" |
-| 📍 Outliers | "12 rows (8.0%) in sales are statistical outliers by IQR method" |
-| 📊 Category Imbalance | "'Mobile' accounts for 72% of records in platform" |
-| 📈 High Variability | "salary has CV of 61% — wide spread worth investigating" |
+| ⚠️ High Missing Values | "42.0% of values in 'email' are missing — needs attention before modeling" |
+| 🔗 Correlation | "'midterm_score' and 'final_score' are strongly positively correlated (r = 0.82)" |
+| 📍 Outliers | "12 rows (8.0%) in 'sales' are statistical outliers by IQR method" |
+| 📊 Category Imbalance | "'Mobile' accounts for 72% of records in 'platform'" |
+| 📈 High Variability | "'salary' has a CV of 61% — wide spread worth investigating" |
 | 🏆 Range Highlight | "Highest salary: 120,000. Lowest: 25,000. Top 10% average: 105,000" |
 | ✅ Clean Data | "No missing values and no duplicates — dataset ready for analysis" |
+
+ID-like columns (ending in `_id`, `_no`) are automatically excluded from variability analysis to prevent meaningless flags.
 
 ---
 
@@ -55,19 +58,26 @@ The tool uses **two methods** depending on your data:
 
 ---
 
-## 💬 Ask Your Data — Supported Questions
+## 💬 Ask Your Data — 15+ Supported Question Types
+
+The query engine uses a **4-pass fuzzy column matching system** — handles exact matches, underscore-normalized names, no-space names, and typo-tolerant fuzzy matching. Type naturally, even with typos.
 
 ```
-"how many rows"                   → The dataset has 200 rows.
-"what columns are there"          → Columns (7): date, region, sales, ...
-"what is average sales"           → Average sales: 51,029.31
-"highest sales"                   → Highest sales: 107,790.97 (Row 57)
-"lowest salary"                   → Lowest salary: 25,000.00 (Row 12)
-"show top 10 region"              → Top 10 in region: North: 54, East: 52 ...
-"how many missing values"         → Missing values by column: ...
-"what is the correlation"         → Strong correlations (|r| > 0.5): ...
-"describe sales"                  → count, mean, std, min, 25%, 50%, 75%, max
-"total revenue"                   → Total revenue: 4,250,000.00
+"how many rows"                     → The dataset has 200 rows.
+"what columns are there"            → Columns (7): date, region, sales, ...
+"what is average sales"             → Average: 51,029.31 | Median: 48,200.00
+"highest sales"                     → Highest sales: 107,790.97 (Row 57)
+"lowest salary"                     → Lowest salary: 25,000.00 (Row 12)
+"total revenue"                     → Total revenue: 4,250,000.00
+"show top 10 region"                → Top 10 in region: North: 54, East: 52 ...
+"which region has highest sales"    → Region with highest avg sales: North (72,400.00)
+"how many missing values"           → Missing values by column: ...
+"what is the correlation"           → Strong correlations (|r| > 0.5): ...
+"describe sales"                    → count, mean, std, min, 25%, 50%, 75%, max
+"standard deviation of salary"      → Std Dev: 18,450.00 | Variance: 340,403,500
+"skewness of sales"                 → 1.243 — right-skewed (few very high values pull avg up)
+"is salary normally distributed"    → Shapiro-Wilk p = 0.032 → not normal (p ≤ 0.05)
+"outliers in sales"                 → 12 of 200 rows (6.0%) outside IQR bounds
 ```
 
 ---
@@ -78,9 +88,9 @@ The tool uses **two methods** depending on your data:
 |---|---|
 | Numeric (continuous) | Histogram — shows distribution |
 | Text (≤ 20 unique values) | Horizontal bar chart — top 10 categories |
-| Multiple numeric columns | Correlation heatmap |
-| Two most correlated columns | Scatter plot with correlation value |
-| Columns with missing values | Missing values bar chart |
+| Multiple numeric columns | Correlation heatmap (up to 8 columns) |
+| Two most correlated columns | Scatter plot with correlation value in title |
+| Columns with missing values | Missing values percentage bar chart |
 
 ---
 
@@ -105,6 +115,7 @@ No upload needed — try with built-in samples:
 | NumPy | Statistical calculations, MAD scoring |
 | Matplotlib | Histograms, bar charts, scatter plots |
 | Seaborn | Correlation heatmap |
+| SciPy | Shapiro-Wilk normality test |
 | Streamlit | Interactive web dashboard |
 
 ---
@@ -151,6 +162,7 @@ pandas
 numpy
 matplotlib
 seaborn
+scipy
 openpyxl
 ```
 
