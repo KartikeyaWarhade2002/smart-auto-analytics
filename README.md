@@ -6,7 +6,7 @@ Upload **any** CSV or Excel dataset — sales, students, employees, hospitals, c
 
 ## 🚀 Live Demo
 
-> Run locally — see setup instructions below.
+> 🌐 **[Live App → smart-analytics-kartikeya.streamlit.app](https://smart-analytics-kartikeya.streamlit.app/)**
 
 ---
 
